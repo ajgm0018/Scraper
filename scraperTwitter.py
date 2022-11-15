@@ -2,6 +2,7 @@
 import os.path
 import sys
 import time
+import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -96,6 +97,11 @@ def get_messages(n_messages):
         
     return all_messages
 
+def to_csv(all):
+    df = pd.DataFrame(all, columns=['Mensajes_texto'])
+    df = df.dropna()
+    df.to_csv("csv/twitter_datos.csv")
+
 # ---- Main ---- #
 if __name__ == "__main__":
     # Guardo el buscador
@@ -104,5 +110,5 @@ if __name__ == "__main__":
     login()
     # Obtenemos los mensajes
     all_messages = get_messages(n_messages)
-    
-    print(f"{all_messages}")
+    # Almacenamos los mensajes
+    to_csv(all_messages)
