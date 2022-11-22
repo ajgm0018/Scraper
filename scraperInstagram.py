@@ -62,7 +62,8 @@ def login():
     print("Accediendo a usuario - Éxito")
     
     print("Validando popup - Dentro de sesión")
-    select = browser.find_element(By.XPATH, '//*[@class="_ac8f"]');
+    select = WebDriverWait(browser, timeout=10).until(lambda d: d.find_element(By.XPATH,'//*[@class="_ac8f"]'))
+    #select = browser.find_element(By.XPATH, '//*[@class="_ac8f"]');
     select.click()
     time.sleep(2)
     
