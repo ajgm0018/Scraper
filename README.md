@@ -1,5 +1,7 @@
 # Scraper
 
+Web: https://cloudbytes.dev/snippets/run-selenium-and-chrome-on-wsl2
+
 Para el funcionamiento de los scripts es necesario:
 
 - Tener un SSOO Linux/Ubuntu o WSL2 instalado
