@@ -12,6 +12,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 # -- Variables -- #
 n_messages = 6
+id_nombre = ""
 
 # -- Funciones -- #
 def conf_chrome():
@@ -29,16 +30,19 @@ def conf_chrome():
     
     return browser
 
-def login():
-    if len(sys.argv) != 3:
+def params():
+    if len(sys.argv) != 4:
         print("Introduce <usuario> <contraseña> de Twitter")
         exit()
     else:
         username = sys.argv[1]
         password = sys.argv[2]
-    
+        id_nombre = sys.argv[3]
+    return username, password, id_nombre
+
+def login(username, password):
     # Login de instagram
-    print("Accediendo a Instagram")
+    print("\nAccediendo a Instagram")
     browser.get("https://www.instagram.com/login")
     time.sleep(4)
     
@@ -95,18 +99,34 @@ def get_messages(n_messages):
     print("Recopilación de mensajes - Éxito")
     return all_messages
 
-def to_csv(all):
+def to_csv(all, id_nombre):
     df = pd.DataFrame(all, columns=['Mensajes_texto'])
     df = df.dropna()
-    df.to_csv("csv/instagram_datos.csv")
+    nombre = 'csv/id_' + str(id_nombre) + '.csv'
+    df.to_csv(nombre)
+    
+def to_csv_error(error, id_nombre):
+    df = pd.DataFrame()
+    df['Mensaje Texto'] = ['Error']
+    nombre = 'csv/id_' + id_nombre + '.csv'
+    df.to_csv(nombre)
 
 # ---- Main ---- #
 if __name__ == "__main__":
-    # Guardo el buscador
-    browser = conf_chrome() 
-    # Almacenamos credenciales
-    login()
-    # Obtenemos los mensajes
-    all_messages = get_messages(n_messages)
-    # Almacenamos los mensajes
-    to_csv(all_messages)
+    try:
+        # Guardo el buscador
+        browser = conf_chrome() 
+        # Parametros
+        username, password, id_nombre = params()
+        # Almacenamos credenciales
+        login(username, password)
+        # Obtenemos los mensajes
+        all_messages = get_messages(n_messages)
+        # Almacenamos los mensajes
+        to_csv(all_messages, id_nombre)
+    except:
+        if(id_nombre != ""):
+            print(" -- Se ha producido un error con la red social ", id_nombre ," --")
+            to_csv_error(id_nombre)
+        else:
+            print("¿ERROR?!")
