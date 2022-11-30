@@ -8,6 +8,9 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 
+import configparser
+import tweepy
+
 # -- Variables -- #
 n_messages = 3
 id_nombre = ""
@@ -18,6 +21,7 @@ def conf_chrome():
     chrome_options = Options()
     chrome_options.add_argument("--headless") # Eliminamos la interfaz
     chrome_options.add_argument("--no-sandbox")
+    #chrome_options.add_argument("window-size=1920,1080")
     
     # Añadir path de chromedirver a la configuracion
     homedir = os.path.expanduser("~")
@@ -25,7 +29,6 @@ def conf_chrome():
     
     # Eleccion de chrome como buscador
     browser = webdriver.Chrome(service=webdriver_service, options=chrome_options)
-    
     return browser
 
 def login(username, password):
@@ -112,6 +115,34 @@ def to_csv_error(id_nombre):
     nombre = 'csv/id_' + id_nombre + '.csv'
     df.to_csv(nombre)
 
+def twitter_api():
+    config = configparser.ConfigParser()
+    config.read('config.ini')
+    
+    api_key = config['twitter']['api_key']
+    api_key_secret = config['twitter']['api_key_secret']
+    access_token = config['twitter']['access_token']
+    access_token_secret = config['twitter']['access_token_secret']
+    
+    auth = tweepy.OAuthHandler(api_key, api_key_secret)
+    auth.set_access_token(access_token, access_token_secret)
+    api = tweepy.API(auth)
+    
+    user_name = 'jcollado95'
+
+    tweets = api.user_timeline(screen_name=user_name, count=200, tweet_mode='extended')
+    
+    # DataFrame
+    columns = ['TweetId', 'User', 'Tweet']
+    data = []
+
+    for tweet in tweets:
+        data.append([tweet.id, tweet.user.screen_name, tweet.full_text])
+
+    df = pd.DataFrame(data, columns=columns)
+
+    print(df)
+    
 # ---- Main ---- #
 if __name__ == "__main__":
     try:
@@ -125,9 +156,13 @@ if __name__ == "__main__":
         all_messages = get_messages(n_messages)
         # Almacenamos los mensajes
         to_csv(all_messages, id_nombre)
+        # Twitter API para los tweets
+        twitter_api()
     except:
         if(id_nombre != ""):
-            to_csv_error(id_nombre)
+            #to_csv_error(id_nombre)
             print(" -- Se ha producido un error con la red social ", id_nombre ," --")
         else:
             print("¿ERROR?!")
+    
+   

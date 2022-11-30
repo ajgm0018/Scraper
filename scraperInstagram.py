@@ -15,6 +15,10 @@ n_messages = 6
 id_nombre = ""
 
 # -- Funciones -- #
+
+"""Configuración de Chromedriver para poder explorar el navegador
+sin interfaz grafica dentro del servidor
+"""
 def conf_chrome():
     # Configuracion de chrome
     chrome_options = Options()
@@ -30,6 +34,8 @@ def conf_chrome():
     
     return browser
 
+"""Petición de parámetros cuando se llama al scraper
+"""
 def params():
     if len(sys.argv) != 4:
         print("Introduce <usuario> <contraseña> de Twitter")
@@ -40,6 +46,9 @@ def params():
         id_nombre = sys.argv[3]
     return username, password, id_nombre
 
+"""Pasos en webdriver para poder acceder a la cuenta de usuario
+de la red social
+"""
 def login(username, password):
     # Login de instagram
     print("\nAccediendo a Instagram")
@@ -65,11 +74,14 @@ def login(username, password):
     time.sleep(3)
     print("Accediendo a usuario - Éxito")
     
-    print("Validando popup - Dentro de sesión")
-    select = WebDriverWait(browser, timeout=10).until(lambda d: d.find_element(By.XPATH,'//*[@class="_ac8f"]'))
-    #select = browser.find_element(By.XPATH, '//*[@class="_ac8f"]');
-    select.click()
-    time.sleep(2)
+    try:
+        print("Validando popup - Dentro de sesión")
+        select = WebDriverWait(browser, timeout=15).until(lambda d: d.find_element(By.XPATH,'//*[@class="_ac8f"]'))
+        #select = browser.find_element(By.XPATH, '//*[@class="_ac8f"]');
+        select.click()
+        time.sleep(2)
+    except:
+        print("No hay pop-up - Dentro de sesion")
     
     # Entrar en mensajes
     select = browser.find_element(By.XPATH, '//a[@href="/direct/inbox/"]')
@@ -78,6 +90,10 @@ def login(username, password):
      
     print("Accediendo a mensajes - Éxito") 
 
+"""Pasos en webdriver para poder acceder a las conversaciones
+del usuario de la red social
+@n_messages: Numero de conversaciones que exporta
+"""
 def get_messages(n_messages):
     
     all_messages = []
@@ -99,6 +115,9 @@ def get_messages(n_messages):
     print("Recopilación de mensajes - Éxito")
     return all_messages
 
+"""Recoge todos los mensajes almacenador y el id de la redsocial y
+lo exporta a csv, añadiendo este id, al nombre del archivo
+"""
 def to_csv(all, id_nombre):
     df = pd.DataFrame(all, columns=['Mensajes_texto'])
     df = df.dropna()
