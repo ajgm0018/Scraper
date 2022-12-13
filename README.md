@@ -32,3 +32,4 @@ Configurar Python y Selenium:
 - python3 -m venv .venv
 - source .venv/bin/activate
 - pip install selenium
+- pip install pycryptodome
