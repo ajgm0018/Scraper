@@ -33,3 +33,4 @@ Configurar Python y Selenium:
 - source .venv/bin/activate
 - pip install selenium
 - pip install pycryptodome
+- pip install pandas
