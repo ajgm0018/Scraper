@@ -21,6 +21,10 @@ superusario = config['superuser']['superusario']
 password = config['superuser']['password']
 authbearer = config['superuser']['authbearer']
 
+"""Abrir un archivo log para almacenar un historial de la recolección de datos
+"""
+log = open('log.txt', 'w')
+
 # -- Funciones -- #
 
 """Se encarga de hacer una petición al backend para que devuelva 
@@ -39,10 +43,11 @@ def almacenarRedesSociales():
     jsonContent = token.content
     tokenBearer = json.loads(jsonContent)
     tokenBearer = tokenBearer['access_token']
-    tokenBearer = authbearer + tokenBearer
+    tokenBearer = " ".join([authbearer, tokenBearer])
 
     # Metodo get
     r = requests.get('http://localhost:5500/all-social-networks', headers=({'Authorization': tokenBearer}))
+    print(r)
     print("Obtener redes sociales: ", r.status_code, r.reason)
     redesSociales = r.content
     redesSociales = json.loads(redesSociales)
@@ -88,10 +93,13 @@ def scraper(redesSociales):
             # -- Descomentar cuando las cuentas sean reales -- #
             # if(name == 'twitter'): os.system('python3 scraperTwitter.py email passw id')
             # if(name == 'instagram'): os.system('python3 scraperInstagram.py email passw id')
-            # LOG acierto
+            
+            # - Log - #
+            log.write('ID: ', id, ' ok')
+            
         except:
             # LOG fallo
-            print("No se ha completado la red social numero: ", n)
+            log.write('ID: ', id, ' ERROR')
 
 """Elimina todas las conversaciones privadas almacenados de la carpeta
 ./csv
@@ -101,11 +109,8 @@ def eliminar_csv():
     for f in os.listdir(dir):
         os.remove(os.path.join(dir, f))  
 
-def log(tipo, id, finalizado):
-    f = open('login.txt', 'w')
-    f.write('Redsocial', tipo, ', id', id, 'a finalizado con:', finalizado)
-    f.close
-
+"""Funcion de prueba, no se utiliza
+"""
 def prueba_añadir_score():
     
         # Creando login form
@@ -128,7 +133,8 @@ def prueba_añadir_score():
 
 # ---- Main ---- #
 if __name__ == "__main__":
-    #redesSociales = almacenarRedesSociales()
+    redesSociales = almacenarRedesSociales()
+    print(redesSociales)
     #scraper(redesSociales)
     #prueba_añadir_score()
     #Enviar a modelo
@@ -137,4 +143,4 @@ if __name__ == "__main__":
     #os.system('python3 scraperTwitter.py AlbertoJoseGuti Albertobaza10 1')
     #os.system('python3 scraperInstagram.py albertoguti1995 alberto10 2')
     
-    print("Buenos dias")
+    #log.close()
