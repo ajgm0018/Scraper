@@ -133,9 +133,9 @@ def prueba_añadir_score():
 
 # ---- Main ---- #
 if __name__ == "__main__":
-    redesSociales = almacenarRedesSociales()
-    print(redesSociales)
-    print("asd")
+    print("Comienza la ejecución")
+    #redesSociales = almacenarRedesSociales()
+    #print(redesSociales)
     #scraper(redesSociales)
     #prueba_añadir_score()
     #Enviar a modelo
