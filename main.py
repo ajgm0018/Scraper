@@ -135,6 +135,7 @@ def prueba_añadir_score():
 if __name__ == "__main__":
     redesSociales = almacenarRedesSociales()
     print(redesSociales)
+    print("asd")
     #scraper(redesSociales)
     #prueba_añadir_score()
     #Enviar a modelo
