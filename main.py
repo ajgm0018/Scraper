@@ -38,7 +38,8 @@ def almacenarRedesSociales():
 
     # Obtener token
     session = requests.Session()
-    token = session.post('http://localhost:5500/login', data=userForm)
+    #token = session.post('http://localhost:5500/login', data=userForm)
+    token = session.post('https://bighug.ujaen.es/api/login', data=userForm)
     print("Obtener token: ", token.status_code, token.reason)
     jsonContent = token.content
     tokenBearer = json.loads(jsonContent)
@@ -46,7 +47,8 @@ def almacenarRedesSociales():
     tokenBearer = " ".join([authbearer, tokenBearer])
 
     # Metodo get
-    r = requests.get('http://localhost:5500/all-social-networks', headers=({'Authorization': tokenBearer}))
+    #r = requests.get('http://localhost:5500/all-social-networks', headers=({'Authorization': tokenBearer}))
+    r = requests.get('https://bighug.ujaen.es/api/all-social-networks', headers=({'Authorization': tokenBearer}))
     print(r)
     print("Obtener redes sociales: ", r.status_code, r.reason)
     redesSociales = r.content
@@ -134,8 +136,8 @@ def prueba_añadir_score():
 # ---- Main ---- #
 if __name__ == "__main__":
     print("Comienza la ejecución")
-    #redesSociales = almacenarRedesSociales()
-    #print(redesSociales)
+    redesSociales = almacenarRedesSociales()
+    print(redesSociales)
     #scraper(redesSociales)
     #prueba_añadir_score()
     #Enviar a modelo
