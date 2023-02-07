@@ -34,8 +34,8 @@ def almacenarRedesSociales():
     print("Almacenar redes sociales -- Comenzando...")
 
     # Creando login form
-    userForm = {'username':superusario, 'password':password}
-    print("Usuario:", superusario, "Contraseña:", password)
+    #userForm = {'username':superusario, 'password':password}
+    userForm = {'username':"a@a.com", 'password':"alberto10"}
 
     # Obtener token
     session = requests.Session()
