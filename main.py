@@ -91,14 +91,9 @@ def scraper(redesSociales):
         #passw = decrypt('id_rsa', passw) 
         passw = decrypt('/home/agmegias/prevemental/backend/.ssh/id_rsa', passw) # Path del servidor
         
-        
-        print("Contraseñas: ", passw)
-        
         email = (redesSociales[n]['email'])
         name = (redesSociales[n]['name'])
-        
-        print("Email: ", email)
-        print("Name: ", name)
+        id = (redesSociales[n]['id'])
 
         """
         try:

@@ -67,7 +67,7 @@ def login(username, password):
     select = browser.find_element(By.NAME, 'password')
     select.send_keys(password)
     time.sleep(3)
-      
+    
     # Click en siguiente
     select = browser.find_element(By.XPATH, '//*[@id="loginForm"]')
     select.click()
@@ -87,7 +87,7 @@ def login(username, password):
     select = browser.find_element(By.XPATH, '//a[@href="/direct/inbox/"]')
     select.click()
     time.sleep(4)
-     
+    
     print("Accediendo a mensajes - Éxito") 
 
 """Pasos en webdriver para poder acceder a las conversaciones

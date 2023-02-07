@@ -9,7 +9,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 
 import configparser
-import tweepy
+# import tweepy
 
 # -- Variables -- #
 n_messages = 3
@@ -116,6 +116,7 @@ def to_csv_error(id_nombre):
     df.to_csv(nombre)
 
 def twitter_api():
+    """
     config = configparser.ConfigParser()
     config.read('config.ini')
     
@@ -142,6 +143,8 @@ def twitter_api():
     df = pd.DataFrame(data, columns=columns)
 
     print(df)
+    """
+    print("Descomentame")
     
 # ---- Main ---- #
 if __name__ == "__main__":
@@ -157,7 +160,7 @@ if __name__ == "__main__":
         # Almacenamos los mensajes
         to_csv(all_messages, id_nombre)
         # Twitter API para los tweets
-        twitter_api()
+        #twitter_api() # Esto va a dejar de funcionar pronto
     except:
         if(id_nombre != ""):
             #to_csv_error(id_nombre)
