@@ -23,10 +23,14 @@ def conf_chrome():
     chrome_options.add_argument("--no-sandbox")
     #chrome_options.add_argument("window-size=1920,1080")
     
+    print("Argumentos añadios a Chrome")
+
     # Añadir path de chromedirver a la configuracion
     homedir = os.path.expanduser("~")
     webdriver_service = Service(f"{homedir}/chromedriver/stable/chromedriver")
     
+    print("Servicio encontrado")
+
     # Eleccion de chrome como buscador
     browser = webdriver.Chrome(service=webdriver_service, options=chrome_options)
     return browser
@@ -148,7 +152,7 @@ def twitter_api():
     
 # ---- Main ---- #
 if __name__ == "__main__":
-    try:
+    #try:
         print("Comienza la ejecución scraper twitter")
         # Guardo el buscador
         browser = conf_chrome() 
@@ -164,10 +168,10 @@ if __name__ == "__main__":
         to_csv(all_messages, id_nombre)
         # Twitter API para los tweets
         #twitter_api() # Esto va a dejar de funcionar pronto
-    except:
-        if(id_nombre != ""):
-            #to_csv_error(id_nombre)
-            print(" -- Se ha producido un error con la red social ", id_nombre ," --")
-        else:
-            print("¿ERROR?!")
+    #except:
+    #    if(id_nombre != ""):
+    #        #to_csv_error(id_nombre)
+    #        print(" -- Se ha producido un error con la red social ", id_nombre ," --")
+    #    else:
+    #        print("¿ERROR?!")
     
