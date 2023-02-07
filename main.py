@@ -71,7 +71,7 @@ def decrypt(filename, passcrypt):
     rsa_cipher = PKCS1_OAEP.new(private_key)
     decrypted_text = rsa_cipher.decrypt(passcrypt)
 
-    return decrypted_text.decode("utf-8")
+    return decrypted_text.decode("Latin-1")
 
 """Lanza un scraper, dependiendo de si la cuenta es de twitter o de
 instagram, para cada red social. Cada scraper almacenará el resultado
@@ -87,10 +87,16 @@ def scraper(redesSociales):
         
         # -- Desencriptar las contraseñas -- #
         passw = decrypt('id_rsa', passw)
+
+        print("Contraseñas: ", passw)
         
         email = (redesSociales[n]['email'])
         name = (redesSociales[n]['name'])
         
+        print("Email: ", email)
+        print("Name: ", name)
+
+        """
         try:
             if(name == 'twitter'): os.system('python3 prueba1.py')
             if(name == 'instagram'): os.system('python3 prueba2.py')   
@@ -105,6 +111,7 @@ def scraper(redesSociales):
         except:
             # LOG fallo
             log.write('ID: ', id, ' ERROR')
+        """
 
 """Elimina todas las conversaciones privadas almacenados de la carpeta
 ./csv
@@ -140,8 +147,7 @@ def prueba_añadir_score():
 if __name__ == "__main__":
     print("Comienza la ejecución")
     redesSociales = almacenarRedesSociales()
-    print(redesSociales)
-    #scraper(redesSociales)
+    scraper(redesSociales)
     #prueba_añadir_score()
     #Enviar a modelo
     #eliminar_csv()
