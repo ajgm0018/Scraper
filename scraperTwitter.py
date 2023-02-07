@@ -32,7 +32,7 @@ def conf_chrome():
     return browser
 
 def login(username, password):
-   
+
     # Login de twitter
     print("\nAccediendo a Twitter")
     browser.get("https://www.twitter.com/login")
@@ -44,7 +44,7 @@ def login(username, password):
     select.click()
     select.send_keys(username)
     time.sleep(2)
-      
+    
     # Click en siguiente
     select = browser.find_element(By.XPATH, '//*[@id="layers"]/div/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div/div/div/div[6]/div')
     select.click()
@@ -149,10 +149,13 @@ def twitter_api():
 # ---- Main ---- #
 if __name__ == "__main__":
     try:
+        print("Comienza la ejecución scraper twitter")
         # Guardo el buscador
         browser = conf_chrome() 
+        print("Obtengo el buscador")
         # Parametros
         username, password, id_nombre = params()
+        print("Parametros conseguidos ", username, password, id_nombre)
         # Almacenamos credenciales
         login(username, password)
         # Obtenemos los mensajes

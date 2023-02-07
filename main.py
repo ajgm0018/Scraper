@@ -95,8 +95,6 @@ def scraper(redesSociales):
         name = (redesSociales[n]['name'])
         id = (redesSociales[n]['id'])
 
-        print("id", id)
-
         """
         try:
             if(name == 'twitter'): os.system('python3 prueba1.py')
