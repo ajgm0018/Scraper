@@ -34,8 +34,8 @@ def almacenarRedesSociales():
     print("Almacenar redes sociales -- Comenzando...")
 
     # Creando login form
-    #userForm = {'username':superusario, 'password':password}
-    userForm = {'username':"a@a.com", 'password':"alberto10"}
+    userForm = {'username':str(superusario), 'password':str(password)}
+    #userForm = {'username':"a@a.com", 'password':"alberto10"}
 
     # Obtener token
     session = requests.Session()
@@ -47,7 +47,7 @@ def almacenarRedesSociales():
     jsonContent = token.content
     tokenBearer = json.loads(jsonContent)
     tokenBearer = tokenBearer['access_token']
-    tokenBearer = " ".join([authbearer, tokenBearer])
+    tokenBearer = " ".join([str(authbearer), tokenBearer])
 
     # Metodo get
     #r = requests.get('http://localhost:5500/all-social-networks', headers=({'Authorization': tokenBearer}))
