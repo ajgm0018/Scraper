@@ -49,10 +49,14 @@ def almacenarRedesSociales():
     tokenBearer = tokenBearer['access_token']
     tokenBearer = " ".join([authbearer, tokenBearer])
 
+    print("Bearer: ", authbearer)
+    print("Token: ", tokenBearer)
+    print("TokenBearer: ", tokenBearer)
+
     # Metodo get
     #r = requests.get('http://localhost:5500/all-social-networks', headers=({'Authorization': tokenBearer}))
     r = requests.get('https://bighug.ujaen.es/api/all-social-networks', headers=({'Authorization': tokenBearer}))
-    print(r)
+    print("Respuesta: ", r)
     print("Obtener redes sociales: ", r.status_code, r.reason)
     redesSociales = r.content
     redesSociales = json.loads(redesSociales)
