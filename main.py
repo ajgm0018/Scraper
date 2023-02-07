@@ -86,7 +86,8 @@ def scraper(redesSociales):
         passw = (redesSociales[n]['encrypted_password'])
         
         # -- Desencriptar las contraseñas -- #
-        passw = decrypt('id_rsa', passw)
+        #passw = decrypt('id_rsa', passw) 
+        passw = decrypt('/home/agmegias/prevemental/backend/id_rsa', passw) # Path del servidor
 
         print("Contraseñas: ", passw)
         
