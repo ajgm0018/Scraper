@@ -27,6 +27,15 @@ log = open('log.txt', 'w')
 
 # -- Funciones -- #
 
+def nuevoUsuario():
+    # Creando login form
+    userForm = {'username':'prueba@gmail.com', 'password':'12345678'}
+
+    # Obtener token
+    session = requests.Session()
+    response = session.post('https://bighug.ujaen.es/api/register', data=userForm)
+    print(response)
+
 """Se encarga de hacer una petición al backend para que devuelva 
 todas las redes sociales registradas y devolverlas
 """
@@ -38,8 +47,8 @@ def almacenarRedesSociales():
 
     # Obtener token
     session = requests.Session()
-    token = session.post('http://localhost:5500/login', data=userForm)
-    #token = session.post('https://bighug.ujaen.es/api/login', data=userForm)
+    #token = session.post('http://localhost:5500/login', data=userForm)
+    token = session.post('https://bighug.ujaen.es/api/login', data=userForm)
     print("Token:", token)
     print("Obtener token: ", token.status_code, token.reason)
     jsonContent = token.content
@@ -137,8 +146,9 @@ def prueba_añadir_score():
 # ---- Main ---- #
 if __name__ == "__main__":
     print("Comienza la ejecución")
-    redesSociales = almacenarRedesSociales()
-    print(redesSociales)
+    nuevoUsuario()
+    #redesSociales = almacenarRedesSociales()
+    #print(redesSociales)
     #scraper(redesSociales)
     #prueba_añadir_score()
     #Enviar a modelo
