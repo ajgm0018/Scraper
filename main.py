@@ -17,9 +17,11 @@ en la base de datos
 config = configparser.ConfigParser()
 config.read('config.ini')
 
+# No funciona en el servidor (?)
 superusario = config['superuser']['superusario']
 password = config['superuser']['password']
-authbearer = config['superuser']['authbearer']
+# authbearer = config['superuser']['authbearer']
+authbearer = "Bearer "
 
 """Abrir un archivo log para almacenar un historial de la recolección de datos
 """
@@ -34,20 +36,18 @@ def almacenarRedesSociales():
     print("Almacenar redes sociales -- Comenzando...")
 
     # Creando login form
-    userForm = {'username':str(superusario), 'password':str(password)}
-    #userForm = {'username':"a@a.com", 'password':"alberto10"}
+    #userForm = {'username':superusario, 'password':password}
+    userForm = {'username':"a@a.com", 'password':"alberto10"}
 
     # Obtener token
     session = requests.Session()
-    print("Sesion:", session)
     #token = session.post('http://localhost:5500/login', data=userForm)
     token = session.post('https://bighug.ujaen.es/api/login', data=userForm)
-    print("Token:", token)
     print("Obtener token: ", token.status_code, token.reason)
     jsonContent = token.content
     tokenBearer = json.loads(jsonContent)
     tokenBearer = tokenBearer['access_token']
-    tokenBearer = " ".join([str(authbearer), tokenBearer])
+    tokenBearer = " ".join([authbearer, tokenBearer])
 
     # Metodo get
     #r = requests.get('http://localhost:5500/all-social-networks', headers=({'Authorization': tokenBearer}))
