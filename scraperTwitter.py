@@ -26,8 +26,8 @@ def conf_chrome():
     print("Argumentos añadios a Chrome")
 
     # Añadir path de chromedirver a la configuracion
-    homedir = os.path.expanduser("~")
-    webdriver_service = Service(f"{homedir}/chromedriver/stable/chromedriver")
+    # homedir = os.path.expanduser("~")
+    webdriver_service = Service("/home/agmegias/chromedriver/stable/chromedriver") # Cambiado por el servidor
     
     print("Servicio encontrado")
 
