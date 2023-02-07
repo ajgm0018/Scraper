@@ -65,6 +65,8 @@ contraseña a desencriptar. Devuelve la clave en string
 """
 def decrypt(filename, passcrypt):
 
+    passcrypt = bytes(passcrypt, "utf-8")
+
     with open(filename, "rb") as file:
         private_key = RSA.importKey(file.read(), '')
 
@@ -88,7 +90,7 @@ def scraper(redesSociales):
         # -- Desencriptar las contraseñas -- #
         #passw = decrypt('id_rsa', passw) 
         passw = decrypt('/home/agmegias/prevemental/backend/.ssh/id_rsa', passw) # Path del servidor
-
+        """
         print("Contraseñas: ", passw)
         
         email = (redesSociales[n]['email'])
@@ -97,7 +99,7 @@ def scraper(redesSociales):
         print("Email: ", email)
         print("Name: ", name)
 
-        """
+        
         try:
             if(name == 'twitter'): os.system('python3 prueba1.py')
             if(name == 'instagram'): os.system('python3 prueba2.py')   
