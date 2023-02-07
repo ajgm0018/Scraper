@@ -65,13 +65,19 @@ contraseña a desencriptar. Devuelve la clave en string
 """
 def decrypt(filename, passcrypt):
 
+    print("Entro en decrypt")
     passcrypt = bytes(passcrypt, "utf-8")
+    print("Consigo la pass: ", passcrypt)
 
     with open(filename, "rb") as file:
+        print("Abro el documento rsa")
         private_key = RSA.importKey(file.read(), '')
+        print("Consigo la private key: ", private_key)
 
     rsa_cipher = PKCS1_OAEP.new(private_key)
+    print("Consigo el cifrador")
     decrypted_text = rsa_cipher.decrypt(passcrypt)
+    print("Consigo decodificarlo: ", decrypted_text)
 
     return decrypted_text.decode("Latin-1")
 
