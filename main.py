@@ -21,7 +21,7 @@ config.read('config.ini')
 superusario = config['superuser']['superusario']
 password = config['superuser']['password']
 # authbearer = config['superuser']['authbearer']
-authbearer = "Bearer "
+authbearer = "Bearer"
 
 """Abrir un archivo log para almacenar un historial de la recolección de datos
 """
@@ -48,10 +48,6 @@ def almacenarRedesSociales():
     tokenBearer = json.loads(jsonContent)
     tokenBearer = tokenBearer['access_token']
     tokenBearer = " ".join([authbearer, tokenBearer])
-
-    print("Bearer: ", authbearer)
-    print("Token: ", tokenBearer)
-    print("TokenBearer: ", tokenBearer)
 
     # Metodo get
     #r = requests.get('http://localhost:5500/all-social-networks', headers=({'Authorization': tokenBearer}))
