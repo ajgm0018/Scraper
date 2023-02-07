@@ -35,12 +35,11 @@ def almacenarRedesSociales():
 
     # Creando login form
     userForm = {'username':superusario, 'password':password}
-    print("Usuario:", superusario, "Cotraseña:", password)
 
     # Obtener token
     session = requests.Session()
-    #token = session.post('http://localhost:5500/login', data=userForm)
-    token = session.post('https://bighug.ujaen.es/api/login', data=userForm)
+    token = session.post('http://localhost:5500/login', data=userForm)
+    #token = session.post('https://bighug.ujaen.es/api/login', data=userForm)
     print("Token:", token)
     print("Obtener token: ", token.status_code, token.reason)
     jsonContent = token.content
