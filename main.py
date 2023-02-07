@@ -66,8 +66,8 @@ contraseña a desencriptar. Devuelve la clave en string
 def decrypt(filename, passcrypt):
 
     print("Entro en decrypt")
-    passcrypt = bytes(passcrypt, "utf-8")
-    print("Consigo la pass: ", passcrypt)
+    passcrypt = bytes(passcrypt, "latin-1")
+    print("Consigo la pass:", passcrypt)
 
     with open(filename, "rb") as file:
         print("Abro el documento rsa")
