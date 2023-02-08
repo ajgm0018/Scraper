@@ -152,14 +152,13 @@ def twitter_api():
     
 # ---- Main ---- #
 if __name__ == "__main__":
-    #try:
+    try:
         print("Comienza la ejecución scraper twitter")
         # Guardo el buscador
         browser = conf_chrome() 
         print("Obtengo el buscador")
         # Parametros
         username, password, id_nombre = params()
-        print("Parametros conseguidos ", username, password, id_nombre)
         # Almacenamos credenciales
         login(username, password)
         # Obtenemos los mensajes
@@ -168,10 +167,10 @@ if __name__ == "__main__":
         to_csv(all_messages, id_nombre)
         # Twitter API para los tweets
         #twitter_api() # Esto va a dejar de funcionar pronto
-    #except:
-    #    if(id_nombre != ""):
-    #        #to_csv_error(id_nombre)
-    #        print(" -- Se ha producido un error con la red social ", id_nombre ," --")
-    #    else:
-    #        print("¿ERROR?!")
+    except:
+        if(id_nombre != ""):
+            #to_csv_error(id_nombre)
+            print(" -- Se ha producido un error con la red social ", id_nombre ," --")
+        else:
+            print("¿ERROR?!")
     
