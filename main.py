@@ -99,20 +99,26 @@ def scraper(redesSociales):
 
         try:
             
+            print("Nombre de la red social a recoger:" + name)
+
             # -- Descomentar cuando las cuentas sean reales -- #
             if(name == 'twitter'): 
+                print("Entro en llamar a twitter")
                 comand = 'python3 scraperTwitter.py' + email + passw + id
+                print("Comando twitter:", comand)
                 os.system(comand)
             if(name == 'instagram'):
+                print("Entro en llamar a instagram")
                 comand = 'python3 scraperInstagram.py' + email + passw + id
+                print("Comando instagram:", comand)
                 os.system(comand)
             
             # - Log - #
-            log.write(logtext + 'ok')
+            log.write(logtext + 'ok\n')
             
         except:
             # LOG fallo
-            log.write(logtext + 'ERROR')
+            log.write(logtext + 'ERROR\n')
 
 """Elimina todas las conversaciones privadas almacenados de la carpeta
 ./csv
