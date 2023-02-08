@@ -106,11 +106,13 @@ def scraper(redesSociales):
                 os.system(comand)
             
             # - Log - #
-            log.write('ID: ', id, ' ok')
+            logtext = 'ID:',id,'ok'
+            log.write(logtext)
             
         except:
             # LOG fallo
-            log.write('ID: ', id, ' ERROR')
+            logtext = 'ID:',id,'ERROR'
+            log.write(logtext)
 
 """Elimina todas las conversaciones privadas almacenados de la carpeta
 ./csv
