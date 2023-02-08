@@ -148,7 +148,7 @@ def twitter_api():
     
 # ---- Main ---- #
 if __name__ == "__main__":
-    try:
+    #try:
         # Guardo el buscador
         browser = conf_chrome() 
         # Parametros
@@ -161,10 +161,11 @@ if __name__ == "__main__":
         to_csv(all_messages, id_nombre)
         # Twitter API para los tweets
         #twitter_api() # Esto va a dejar de funcionar pronto
-    except:
-        if(id_nombre != ""):
-            #to_csv_error(id_nombre)
-            print(" -- Se ha producido un error con la red social ", id_nombre ," --")
-        else:
-            print("¿ERROR?!")
-    
+"""
+except:
+    if(id_nombre != ""):
+        to_csv_error(id_nombre)
+        print(" -- Se ha producido un error con la red social ", id_nombre ," --")
+    else:
+        print("¿ERROR?!")
+"""
