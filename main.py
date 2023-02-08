@@ -95,7 +95,7 @@ def scraper(redesSociales):
         name = (redesSociales[n]['name'])
         id = (redesSociales[n]['id'])
 
-        logtext = 'ID:' + id
+        logtext = 'ID:' + str(id)
 
         try:
             
