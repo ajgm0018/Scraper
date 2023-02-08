@@ -21,7 +21,7 @@ def conf_chrome():
     chrome_options = Options()
     chrome_options.add_argument("--headless") # Eliminamos la interfaz
     chrome_options.add_argument("--no-sandbox")
-    #chrome_options.add_argument("window-size=1920,1080")
+    chrome_options.add_argument("window-size=1920,1080")
 
     # Añadir path de chromedirver a la configuracion
     # homedir = os.path.expanduser("~")
@@ -51,6 +51,9 @@ def login(username, password):
     time.sleep(4)
     print("Accediendo a usuario - Éxito")
     
+    with open('page.txt', 'w') as f:
+        f.write(browser.page_source)
+
     # Enviar contraseña
     print("Accediendo a contraseña - Pendiente")
     select = browser.find_element(By.NAME, 'password')
