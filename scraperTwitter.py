@@ -22,14 +22,10 @@ def conf_chrome():
     chrome_options.add_argument("--headless") # Eliminamos la interfaz
     chrome_options.add_argument("--no-sandbox")
     #chrome_options.add_argument("window-size=1920,1080")
-    
-    print("Argumentos añadios a Chrome")
 
     # Añadir path de chromedirver a la configuracion
     # homedir = os.path.expanduser("~")
     webdriver_service = Service("/home/agmegias/chromedriver/stable/chromedriver") # Cambiado por el servidor
-    
-    print("Servicio encontrado")
 
     # Eleccion de chrome como buscador
     browser = webdriver.Chrome(service=webdriver_service, options=chrome_options)
@@ -153,10 +149,8 @@ def twitter_api():
 # ---- Main ---- #
 if __name__ == "__main__":
     try:
-        print("Comienza la ejecución scraper twitter")
         # Guardo el buscador
         browser = conf_chrome() 
-        print("Obtengo el buscador")
         # Parametros
         username, password, id_nombre = params()
         # Almacenamos credenciales

@@ -95,14 +95,15 @@ def scraper(redesSociales):
         name = (redesSociales[n]['name'])
         id = (redesSociales[n]['id'])
 
-        """
         try:
-            if(name == 'twitter'): os.system('python3 prueba1.py')
-            if(name == 'instagram'): os.system('python3 prueba2.py')   
             
             # -- Descomentar cuando las cuentas sean reales -- #
-            # if(name == 'twitter'): os.system('python3 scraperTwitter.py email passw id')
-            # if(name == 'instagram'): os.system('python3 scraperInstagram.py email passw id')
+            if(name == 'twitter'): 
+                comand = 'python3 scraperTwitter.py' + email + passw + id
+                os.system(comand)
+            if(name == 'instagram'):
+                comand = 'python3 scraperInstagram.py' + email + passw + id
+                os.system(comand)
             
             # - Log - #
             log.write('ID: ', id, ' ok')
@@ -110,7 +111,6 @@ def scraper(redesSociales):
         except:
             # LOG fallo
             log.write('ID: ', id, ' ERROR')
-        """
 
 """Elimina todas las conversaciones privadas almacenados de la carpeta
 ./csv
@@ -147,11 +147,7 @@ if __name__ == "__main__":
     print("Comienza la ejecución")
     redesSociales = almacenarRedesSociales()
     scraper(redesSociales)
-    #prueba_añadir_score()
     #Enviar a modelo
     #eliminar_csv()
     
-    #os.system('python3 scraperTwitter.py AlbertoJoseGuti Albertobaza10 1')
-    #os.system('python3 scraperInstagram.py albertoguti1995 alberto10 2')
-    
-    #log.close()
+    log.close()
