@@ -95,6 +95,8 @@ def scraper(redesSociales):
         name = (redesSociales[n]['name'])
         id = (redesSociales[n]['id'])
 
+        logtext = 'ID:' + id
+
         try:
             
             # -- Descomentar cuando las cuentas sean reales -- #
@@ -106,13 +108,11 @@ def scraper(redesSociales):
                 os.system(comand)
             
             # - Log - #
-            logtext = 'ID:',id,'ok'
-            log.write(logtext)
+            log.write(logtext + 'ok')
             
         except:
             # LOG fallo
-            logtext = 'ID:',id,'ERROR'
-            log.write(logtext)
+            log.write(logtext + 'ERROR')
 
 """Elimina todas las conversaciones privadas almacenados de la carpeta
 ./csv
