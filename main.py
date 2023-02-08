@@ -104,14 +104,14 @@ def scraper(redesSociales):
             # -- Descomentar cuando las cuentas sean reales -- #
             if(name == 'twitter'): 
                 print("Entro en llamar a twitter")
-                comand = 'python3 scraperTwitter.py' + email + passw + id
-                print("Comando twitter:", comand)
-                os.system(comand)
+                call = "python3 scraperTwitter.py" + email + passw + id
+                print("Comando twitter:", call)
+                os.system(call)
             if(name == 'instagram'):
                 print("Entro en llamar a instagram")
-                comand = 'python3 scraperInstagram.py' + email + passw + id
-                print("Comando instagram:", comand)
-                os.system(comand)
+                call = "python3 scraperInstagram.py" + email + passw + id
+                print("Comando instagram:", call)
+                os.system(call)
             
             # - Log - #
             log.write(logtext + 'ok\n')
