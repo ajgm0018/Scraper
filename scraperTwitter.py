@@ -43,19 +43,19 @@ def login(username, password):
     select = browser.find_element(By.NAME, 'text')
     select.click()
     select.send_keys(username)
-    time.sleep(2)
+    time.sleep(4)
     
     # Click en siguiente
     select = browser.find_element(By.XPATH, '//*[@id="layers"]/div/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div/div/div/div[6]/div')
     select.click()
-    time.sleep(2)
+    time.sleep(4)
     print("Accediendo a usuario - Éxito")
     
     # Enviar contraseña
     print("Accediendo a contraseña - Pendiente")
     select = browser.find_element(By.NAME, 'password')
     select.send_keys(password)
-    time.sleep(2)
+    time.sleep(4)
     
     # Click en entrar
     select = browser.find_element(By.XPATH, '//*[@id="layers"]/div/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[2]/div/div[1]/div/div/div/div')

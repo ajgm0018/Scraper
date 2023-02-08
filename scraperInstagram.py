@@ -146,6 +146,6 @@ if __name__ == "__main__":
     except:
         if(id_nombre != ""):
             print(" -- Se ha producido un error con la red social ", id_nombre ," --")
-            to_csv_error(id_nombre)
+            to_csv_error("Error desconocido",id_nombre)
         else:
             print("¿ERROR?!")
