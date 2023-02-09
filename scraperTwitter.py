@@ -21,7 +21,7 @@ def conf_chrome():
     chrome_options = Options()
     chrome_options.add_argument("--headless") # Eliminamos la interfaz
     chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--enable-javascript")
+    chrome_options.add_argument("--incognito")
     #chrome_options.add_argument("window-size=1920,1080")
 
     # Añadir path de chromedirver a la configuracion
@@ -30,6 +30,7 @@ def conf_chrome():
 
     # Eleccion de chrome como buscador
     browser = webdriver.Chrome(service=webdriver_service, options=chrome_options)
+    browser.implicitly_wait(0.5)
     return browser
 
 def login(username, password):
